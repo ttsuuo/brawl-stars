@@ -34,7 +34,7 @@
     </div>
 
     <div class="create-form__image-wrapper">
-        <input type="file">
+        <input type="file" accept="image/*" (change)="onFileSelected($event)">
     </div>
     <button type="submit" class="create-form__btn">Add new brawler</button>
 </form>
