@@ -1,18 +1,16 @@
 {
-  "name": "brawl-stars",
+  "name": "rick-and-morty",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "ng build --configuration production && npx angular-cli-ghpages --dir=dist/brawl-stars/browser"
+    "test": "ng test"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
   "dependencies": {
-    "@angular/cdk": "^22.0.6",
     "@angular/common": "^22.0.0",
     "@angular/compiler": "^22.0.0",
     "@angular/core": "^22.0.0",

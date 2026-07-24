@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BrawlerService } from './brawler-service';
+import { CharacterService } from './character-service';
 
-describe('BrawlerService', () => {
-  let service: BrawlerService;
+describe('CharacterService', () => {
+  let service: CharacterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BrawlerService);
+    service = TestBed.inject(CharacterService);
   });
 
   it('should be created', () => {
