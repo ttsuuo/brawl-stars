@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Navigation } from '../navigation/navigation';
 import { RouterLink } from '@angular/router';
 
@@ -11,4 +11,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {}
+export class Header {
+  goToHome(): string {
+    return '/';
+  }
+}
