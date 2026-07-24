@@ -5,14 +5,6 @@
 
 <div class="brawler__grid">
     <article class="brawler-card" *ngFor="let brawler of filteredBrawlerList">
-        <div class="brawler-card__image-wrapper">
-            <img [src]="brawler.image" [alt]="brawler.name" class="brawler-card__image">
-        </div>
-        <div class="brawler-card__info">
-            <h3 class="brawler-card__title">{{brawler.name}}</h3>
-            <p class="brawler-card__rarity">Rarity: <span [style.color]="getColor(brawler.rarity)">{{brawler.rarity}}</span></p>
-            <p class="brawle-cardr__class">Class: <span>{{brawler.class}}</span></p>
-            <button [routerLink]="['/brawler', brawler.id ]" class="brawler-card__details">Learn more</button>
-        </div>
+        <app-brawler-card [brawler]="brawler" (showDetails)="openModal($event)"></app-brawler-card>
     </article>
 </div>
