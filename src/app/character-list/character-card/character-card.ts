@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CharacterInfo } from '../../character';
 
 @Component({
@@ -9,5 +9,11 @@ import { CharacterInfo } from '../../character';
 })
 export class CharacterCard {
   @Input() character!: CharacterInfo;
+
+  @Output() actionClicked = new EventEmitter<void>();
+
+  notifyParent() {
+    this.actionClicked.emit();
+  }
 }
 

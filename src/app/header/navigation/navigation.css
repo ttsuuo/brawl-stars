@@ -1,0 +1,27 @@
+.nav__list {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav__item {
+    color: #000000;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav__item:hover {
+    color: #1e1e24;
+    transform: translateY(-2px);
+}
+
+.nav__item:active {
+  transform: translateY(0);
+}

@@ -1,0 +1,70 @@
+.character-card__image-wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    border-bottom: 2px solid #c1c1c1;
+}
+
+.character-card__image {
+    border-radius: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.4));
+}
+
+.character-card__info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.character-card__title {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    letter-spacing: 0.5px;
+}
+ 
+.character-card__species {
+    color: #b3b3b9;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.character-card__species span {
+    color: #000000;
+    font-weight: 800;
+}
+
+.character-card__details {
+    margin-top: auto;
+    background-color: #00daff;
+    color: #fff;
+    border: 3px solid #1e1e24;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #1e1e24;
+    text-shadow: 1px 1px 0px #000;
+    transition: all 0.1s ease;
+}
+
+.character-card__details:hover {
+    background-color: #00b4d8;
+}
+
+.character-card__details:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #1e1e24;
+}
