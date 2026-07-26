@@ -20,17 +20,32 @@ export class CharacterList {
   characterService = inject(CharacterService);
   router = inject(Router);
   cdr = inject(ChangeDetectorRef);
-  data: any;
+  filteredCharacterList: CharacterInfo[] = [];
+
+  filterResults(text: string) {
+    const search = text.toLowerCase().trim();
+    this.filteredCharacterList = this.characters.filter((character) => {
+      return character?.name.toLowerCase().includes(search);
+    });
+    this.cdr.detectChanges();
+  }
 
   ngOnInit(): void {
     this.characterService.getCharacters().subscribe({
       next: (data: ApiResponse) => {
         this.characters = data.results;
         this.cdr.detectChanges();
-        console.log(this.characters);
       },
       error: (err) => console.error('Ошибка загрузки', err)
-    })
+    });
+
+    this.characterService.getCharacters().subscribe({
+      next: (data: ApiResponse) => {
+        this.filteredCharacterList = data.results;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error('Ошибка загрузки', err)
+    });
   }
 
   handleButtonClick(id: number): void {
