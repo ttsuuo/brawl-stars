@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    apiUrl: 'https://rickandmortyapi.com'
+  production: true,
+  apiUrl: 'https://rickandmortyapi.com'
 };
