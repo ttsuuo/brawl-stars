@@ -71,6 +71,13 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/rick-and-morty/",
+            "dir": "dist/rick-and-morty/browser"
+          }
         }
       }
     }
