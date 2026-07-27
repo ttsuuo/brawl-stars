@@ -46,8 +46,8 @@
 
 .character-card__details {
     margin-top: auto;
-    background-color: #00daff;
-    color: #fff;
+    background-color: #00ff97;
+    color: #000000;
     border: 3px solid #1e1e24;
     padding: 10px;
     font-size: 16px;
@@ -56,12 +56,7 @@
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 4px 0 #1e1e24;
-    text-shadow: 1px 1px 0px #000;
     transition: all 0.1s ease;
-}
-
-.character-card__details:hover {
-    background-color: #00b4d8;
 }
 
 .character-card__details:active {

@@ -1,0 +1,31 @@
+.home {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.home__image-wrapper {
+    max-width: 500px;
+    cursor: pointer;
+}
+
+.home__image-wrapper img {
+    width: 100%;
+    animation: pulse-anim 1s infinite alternate;
+}
+
+.home__title {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+@keyframes pulse-anim {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}

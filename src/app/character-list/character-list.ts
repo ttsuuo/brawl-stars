@@ -20,32 +20,52 @@ export class CharacterList {
   characterService = inject(CharacterService);
   router = inject(Router);
   cdr = inject(ChangeDetectorRef);
-  filteredCharacterList: CharacterInfo[] = [];
 
-  filterResults(text: string) {
-    const search = text.toLowerCase().trim();
-    this.filteredCharacterList = this.characters.filter((character) => {
-      return character?.name.toLowerCase().includes(search);
-    });
-    this.cdr.detectChanges();
-  }
+  currentPage = 1;
+  searchQuery: string = '';
+  isLoading = false;
 
   ngOnInit(): void {
-    this.characterService.getCharacters().subscribe({
-      next: (data: ApiResponse) => {
-        this.characters = data.results;
-        this.cdr.detectChanges();
-      },
-      error: (err) => console.error('Ошибка загрузки', err)
-    });
+    this.loadCharacters();
+  }
 
-    this.characterService.getCharacters().subscribe({
-      next: (data: ApiResponse) => {
-        this.filteredCharacterList = data.results;
+  loadCharacters() {
+    if (this.isLoading) return;
+
+    this.isLoading = true;
+
+    this.characterService
+    .getFilteredCharactersByName(this.searchQuery, this.currentPage)
+    .subscribe({
+      next: (data) => {
+        this.characters = data.results;
+        this.isLoading = false;
         this.cdr.detectChanges();
       },
-      error: (err) => console.error('Ошибка загрузки', err)
+      error: (err) => {
+        console.error('Ошибка загрузки', err);
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      }
     });
+  }
+
+  filterResults(text: string) {
+    this.searchQuery = text;
+    this.currentPage = 1;
+    this.loadCharacters();
+  }
+  
+  nextPage() {
+    this.currentPage++;
+    this.loadCharacters();
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadCharacters();
+    }
   }
 
   handleButtonClick(id: number): void {

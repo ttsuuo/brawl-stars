@@ -4,7 +4,7 @@
     background-color: white;
     align-items: center;
     padding: 15px 40px;
-    border-bottom: 4px solid #ffcc00;
+    border-bottom: 4px solid #00ff97;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     top: 0;
     z-index: 100;
@@ -16,7 +16,7 @@
 }
 
 .header__image img {
-    width: 90px;
+    width: 130px;
     height: auto;
     display: block;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
