@@ -33,6 +33,10 @@ export class CharacterService {
         )
     }
 
+    getSomeone(): Observable<ApiResponse> {
+        return this.http.get<ApiResponse>(this.characterUrl)
+    }
+
     getCharacterById(id: string | number): Observable<CharacterInfo> {
         return this.http.get<CharacterInfo>(`${this.characterUrl}/${id}`)
     }

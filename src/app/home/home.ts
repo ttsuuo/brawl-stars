@@ -12,14 +12,13 @@ import { switchMap } from 'rxjs';
 export class Home implements OnInit {
   private router = inject(Router);
   private characterService = inject(CharacterService);
-  maxId = 0;
+
   maxPages = 0;
   isLoaded = false;
 
   ngOnInit(): void {
     this.characterService.getLimits().subscribe({
       next: (response) => {
-        this.maxId = response.info.count;
         this.maxPages = response.info.pages;
         this.isLoaded = true;
       },
