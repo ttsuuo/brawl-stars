@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { interval, Subscription, timer, shareReplay, take } from 'rxjs';
+import { interval, Subscription, map } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -10,28 +10,48 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class Stopwatch {
   isRunning = false;
+  count = '00:00:00';
+  savedValue = 0;
+
   timer?: Subscription;
-  count = 0;
   private cdr = inject(ChangeDetectorRef);
   private lastClickTime = 0;
-  
 
   get buttonText(): string {
     return this.isRunning ? 'STOP' : 'START';
   }
 
+  createIntervalFrom(savedValue: number) {
+    return interval(1000).pipe(
+      map(tick => savedValue + tick + 1)
+    )
+  }
+
+  formatTime(totalSeconds: number): string {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  }
+
   startTimer() {
-    this.timer = interval(1000).subscribe(() => {
-      this.count++
+    if (this.isRunning) return;
+
+    this.timer = this.createIntervalFrom(this.savedValue).subscribe((val) => {
+      this.savedValue = val;
+      this.count = this.formatTime(val);
       this.cdr.detectChanges();
     })
     this.isRunning = true;
   }
 
-
   stopTimer() {
-    this.count = 0;
     this.timer?.unsubscribe();
+    this.savedValue = 0;
+    this.count = '00:00:00';
     this.isRunning = false;
   }
 
@@ -40,21 +60,21 @@ export class Stopwatch {
     const diff = currentTime - this.lastClickTime;
 
     if (diff <= 300) {
-      console.log(this.count)
+      if (this.timer) {
+        this.timer.unsubscribe();
+        this.isRunning = false;
+      }
     }
 
     this.lastClickTime = currentTime;
   }
 
   resetTimer() {
-    this.count = 0;
-    if (this.isRunning) {
-      this.timer?.unsubscribe();
-      this.startTimer();
-    } else {
-      this.timer?.unsubscribe();
-      this.startTimer()
-    }
+    this.timer?.unsubscribe();
+    this.savedValue = 0;
+    this.count = '00:00:00';
+    this.isRunning = false;
+    this.startTimer();
   }
   
   buttonCLicked() {
@@ -63,5 +83,9 @@ export class Stopwatch {
     } else {
       this.startTimer()
     }
+  }
+
+  ngOnDestroy() {
+    this.timer?.unsubscribe();
   }
 }

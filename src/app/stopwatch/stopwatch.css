@@ -1,0 +1,86 @@
+.stopwatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 3px solid #00ffaa;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.stopwatch__display {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    font-family: monospace;
+    text-shadow: 0 0 15px rgba(0, 255, 151, 0.6);
+    margin-bottom: 30px;
+    background: #00ff97;
+    padding: 15px 30px;
+    border-radius: 12px;
+    border: 2px solid #00ff97;
+    width: 100%;
+    text-align: center;
+    box-shadow: inset 0 0 10px rgba(0, 255, 151, 0.2);
+}
+
+.stopwatch__actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+    border: none;
+    outline: none;
+}
+
+.button:active {
+    transform: translateY(4px);
+}
+
+.stopwatch__start-btn {
+    background-color: #00ff97;
+    color: #000000;
+    box-shadow: 0 4px 0 #00aa63;
+}
+
+.stopwatch__start-btn:active {
+    box-shadow: 0 0 0 #00aa63;
+}
+
+.stopwatch__wait-btn {
+    background: #1a1a24;
+    color: #00ff97;
+    border: 2px solid #00ff97;
+    box-shadow: 0 4px 0 #00ff97;
+}
+
+.stopwatch__wait-btn:active {
+    box-shadow: 0 0 0 #00ff97;
+}
+
+.stopwatch__reset-btn {
+    background-color: #ff3366;
+    color: #ffffff;
+    box-shadow: 0 4px 0 #b31b40;
+}
+
+.stopwatch__reset-btn:active {
+    box-shadow: 0 0 0 #b31b40;
+}
