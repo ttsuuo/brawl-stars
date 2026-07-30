@@ -1,8 +1,8 @@
 <div class="stopwatch">
-    <time datetime="PT00H00M00S" class="stopwatch__display">{{ count }}</time>
+    <time datetime="PT00H00M00S" class="stopwatch__display">{{ timer$ | async }}</time>
     <div class="stopwatch__actions">
-        <button (click)="buttonCLicked()" class="stopwatch__start-btn button">{{ buttonText }}</button>
-        <button (click)="waitTimer()" class="stopwatch__wait-btn button">WAIT</button>
+        <button (click)="buttonCLicked()" class="stopwatch__start-btn button">{{ isRunning ? 'STOP' : 'START' }}</button>
+        <button class="stopwatch__wait-btn button" #waitBtn>WAIT</button>
         <button (click)="resetTimer()" class="stopwatch__reset-btn button">RESET</button>
     </div>
 </div>
