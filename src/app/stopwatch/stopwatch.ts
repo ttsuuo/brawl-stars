@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormatPipe } from '../pipes/format-pipe';
 
+const CLICK_DURATION_MS = 300;
+const INITIAL_VALUE = 0;
+const TIMER_INTERVAL = 1000;
 @Component({
   selector: 'app-stopwatch',
   imports: [CommonModule, FormatPipe],
@@ -15,7 +18,7 @@ export class Stopwatch implements AfterViewInit {
 
   private loadUserClick$ = new Subject<void>();
   private stopUserClick$ = new Subject<'PAUSE' | 'RESET'>();
-  savedTimer$ = new BehaviorSubject<number>(0);
+  savedTimer$ = new BehaviorSubject<number>(INITIAL_VALUE);
 
   private timerController$ = merge(
     this.loadUserClick$.pipe(map(() => 'START')),
@@ -25,12 +28,12 @@ export class Stopwatch implements AfterViewInit {
   timer$: Observable<number> = this.timerController$.pipe(
     switchMap((action) => {
       if (action === 'RESET') {
-        this.savedTimer$.next(0);
-        return of(0);
+        this.savedTimer$.next(INITIAL_VALUE);
+        return of(INITIAL_VALUE);
       }
 
       if (action === 'START') {
-        return timer(1000, 1000).pipe(
+        return timer(TIMER_INTERVAL, TIMER_INTERVAL).pipe(
           map(() => {
             const nextValue = this.savedTimer$.value + 1;
             this.savedTimer$.next(nextValue);
@@ -41,7 +44,7 @@ export class Stopwatch implements AfterViewInit {
 
       return of(this.savedTimer$.value);
     }), 
-    startWith(0)
+    startWith(INITIAL_VALUE)
   )
 
   startTimer() {
@@ -68,7 +71,7 @@ export class Stopwatch implements AfterViewInit {
     const click$ = fromEvent(this.waitButton.nativeElement, 'click');
 
     click$.pipe(
-      buffer(click$.pipe(debounceTime(300))),
+      buffer(click$.pipe(debounceTime(CLICK_DURATION_MS))),
       filter(clicks => clicks.length >= 2),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(() => {
