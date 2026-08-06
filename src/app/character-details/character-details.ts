@@ -25,11 +25,6 @@ export class CharacterDetails implements OnInit{
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
-    const page = this.route.snapshot.queryParamMap.get('page');
-
-    console.log('id:', id)
-    console.log('page:', page)
-
     if (id !== null) {
       this.characterService.getCharacterById(id).subscribe(data => {
         this.character = data;

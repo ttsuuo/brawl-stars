@@ -5,7 +5,7 @@
 
 <div class="character__grid">
     <article *ngFor="let character of characters" class="character-card">
-        <app-character-card (actionClicked)="handleButtonClick(character.id)" [character]="character"></app-character-card>
+        <app-character-card (actionClicked)="handleButtonClick(character.id, $event)" [character]="character"></app-character-card>
     </article>
 </div>
 
@@ -20,3 +20,5 @@
         Вперед <span class="arrow">&rarr;</span>
     </button>
 </div>
+
+<ng-container #modalContainer></ng-container>

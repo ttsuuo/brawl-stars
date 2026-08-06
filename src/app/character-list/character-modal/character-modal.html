@@ -1,0 +1,14 @@
+<div class="backdrop" (click)="close.emit()">
+    <div *ngIf="character" class="character" (click)="$event.stopPropagation()">
+        <div class="character__image-wrapper">
+            <img [src]="character.image" [alt]="character.name">
+        </div>
+        <div class="character__info">
+            <h2 class="character__name">{{ character.name }}</h2>
+            <p class="character__status">Status: <span [ngStyle]="{'backgroundColor': statusColors[character.status] || 'black'}">{{ character.status }}</span></p>
+            <p class="character__species">Species: <span>{{ character.species }}</span></p>
+            <p class="character__gender">Gender: <span>{{ character.gender }}</span></p>
+        </div>
+        <button (click)="close.emit()">Закрыть</button>
+    </div>
+</div>

@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef, ViewContainerRef, ViewChild, ComponentRef } from '@angular/core';
 import { CharacterInfo } from '../character';
 import { CharacterService } from '../character-service';
 import { CommonModule } from '@angular/common';
 import { ApiResponse } from '../api-response';
 import { CharacterCard } from './character-card/character-card';
 import { Router } from '@angular/router';
+import { CharacterModal } from './character-modal/character-modal';
 
 @Component({
   selector: 'app-character-list',
@@ -24,6 +25,9 @@ export class CharacterList {
   currentPage = 1;
   searchQuery: string = '';
   isLoading = false;
+
+  @ViewChild('modalContainer', { read: ViewContainerRef }) container!: ViewContainerRef;
+  private modalRef?: ComponentRef<CharacterModal>;
 
   ngOnInit(): void {
     this.loadCharacters();
@@ -68,11 +72,24 @@ export class CharacterList {
     }
   }
 
-  handleButtonClick(id: number): void {
-    if (id) {
-      this.router.navigate(['character', id]);
+  handleButtonClick(id: number, type: string): void {
+    if (type === 'details') {
+      this.router.navigate(['character', id])
+    }
+    if (type === 'modal') {
+      this.container.clear();
+
+      this.modalRef = this.container.createComponent(CharacterModal);
+
+      this.modalRef.setInput('id', id);
+
+      this.modalRef.instance.close.subscribe(() => this.closeModal());
     } else {
       console.error('Error');
     }
+  }
+
+  closeModal() {
+    this.container.clear();
   }
 }

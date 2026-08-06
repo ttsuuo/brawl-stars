@@ -44,13 +44,18 @@
     font-weight: 800;
 }
 
-.character-card__details {
+.character-card__actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
     margin-top: auto;
     background-color: #00ff97;
     color: #000000;
     border: 3px solid #1e1e24;
     padding: 10px;
-    font-size: 16px;
+    font-size: 9px;
     font-weight: 900;
     text-transform: uppercase;
     border-radius: 12px;
@@ -59,7 +64,11 @@
     transition: all 0.1s ease;
 }
 
-.character-card__details:active {
+.btn:active {
     transform: translateY(4px);
     box-shadow: 0 0 0 #1e1e24;
+}
+
+.character-card__modal {
+    background-color: #ff0000;
 }

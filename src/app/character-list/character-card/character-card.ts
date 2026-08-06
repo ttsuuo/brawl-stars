@@ -10,10 +10,11 @@ import { CharacterInfo } from '../../character';
 export class CharacterCard {
   @Input() character!: CharacterInfo;
 
-  @Output() actionClicked = new EventEmitter<void>();
+  @Output() actionClicked = new EventEmitter<string>();
 
-  notifyParent() {
-    this.actionClicked.emit();
+  notifyParent(actionType: string) {
+    this.actionClicked.emit(actionType);
   }
+
 }
 

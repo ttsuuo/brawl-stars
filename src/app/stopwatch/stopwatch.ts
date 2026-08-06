@@ -1,7 +1,7 @@
 import { Component, DestroyRef, ViewChild, ElementRef, inject, AfterViewInit } from '@angular/core';
 import { of, map, fromEvent, merge, Subject, Observable, timer, buffer, switchMap, BehaviorSubject, takeUntil, startWith, take, debounceTime, filter, scan } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormatPipe } from '../pipes/format-pipe';
 
 const CLICK_DURATION_MS = 300;
@@ -46,6 +46,8 @@ export class Stopwatch implements AfterViewInit {
     }), 
     startWith(INITIAL_VALUE)
   )
+
+  timer = toSignal(this.timer$, {initialValue: null})
 
   startTimer() {
     this.loadUserClick$.next();

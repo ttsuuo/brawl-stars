@@ -1,5 +1,5 @@
 <div class="stopwatch">
-    <time datetime="PT00H00M00S" class="stopwatch__display">{{ timer$ | async | format }}</time>
+    <time datetime="PT00H00M00S" class="stopwatch__display">{{ timer() | format }}</time>
     <div class="stopwatch__actions">
         <button (click)="buttonCLicked()" class="stopwatch__start-btn button">{{ isRunning ? 'STOP' : 'START' }}</button>
         <button class="stopwatch__wait-btn button" #waitBtn>WAIT</button>

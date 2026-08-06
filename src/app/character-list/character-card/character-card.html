@@ -4,5 +4,8 @@
 <div class="character-card__info">
     <h3 class="character-card__title">{{character.name}}</h3>
     <p class="character-card__species">Species: <span>{{character.species}}</span></p>
-    <button (click)="notifyParent()" class="character-card__details">Learn more</button>
+    <div class="character-card__actions">
+        <button (click)="notifyParent('details')" class="character-card__details btn">Learn more</button>
+        <button (click)="notifyParent('modal')" class="character-card__modal btn">Learn more (modal)</button>
+    </div>
 </div>
